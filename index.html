@@ -1,80 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnX | Adaptive Mastery</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </head>
 <body>
-    <div id="reward-overlay" class="reward-overlay hidden">
-        <div class="reward-card neon-border-purple">
-            <i class="fas fa-bolt neon-text-purple"></i>
-            <h2>NODE COMPLETED</h2>
-            <p id="reward-desc">+50 XP Archiving...</p>
+
+<div class="layout">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2 class="logo">⚡ DevTrack</h2>
+    <ul>
+        <li class="active">Dashboard</li>
+        <li>Achievements</li>
+        <li>Profile</li>
+    </ul>
+
+    <div class="streak">
+        🔥 <span id="streakDays">12</span> Days Streak
+    </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+
+<header>
+    <h1>Good Morning, <span class="highlight">Developer</span></h1>
+
+    <div class="xp-card">
+        <h3>Level <span id="level">1</span></h3>
+        <div class="xp-bar">
+            <div class="xp-fill" id="xpFill"></div>
+        </div>
+        <p><span id="xpText">0</span> / <span id="xpNeeded">100</span> XP</p>
+
+        <button class="gain-btn" onclick="gainXP()">+ Solve Problem</button>
+    </div>
+</header>
+
+<!-- Concept Mastery -->
+<div class="card mastery fade-in">
+    <h2>Concept Mastery</h2>
+
+    <div class="progress-item">
+        <span>Loops</span>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width:88%"></div>
         </div>
     </div>
 
-    <div class="app-container">
-        <header class="top-bar">
-            <div class="brand-box">
-                <span class="learn-text">LEARN</span><span class="logo-x">X</span>
-            </div>
-            
-            <div class="stats-glass">
-                <div class="stat-item neon-text-purple" id="streak-container">
-                    <i class="fas fa-fire"></i> STREAK: <span id="streak-count">0</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item neon-text-blue">
-                    <i class="fas fa-microchip"></i> <span id="rank-name">NOVICE</span>
-                </div>
-            </div>
-        </header>
-
-        <div class="progress-section">
-            <div class="progress-info">
-                <span>CONCEPT MASTERY</span>
-                <span id="progress-text">0%</span>
-            </div>
-            <div class="progress-track">
-                <div id="progress-fill" class="progress-fill neon-glow-purple" style="width: 0%;"></div>
-            </div>
+    <div class="progress-item">
+        <span>Conditionals</span>
+        <div class="progress-bar">
+            <div class="progress-fill yellow" style="width:45%"></div>
         </div>
-
-        <main class="glass-card" id="main-card">
-            <div class="card-header">
-                <span class="badge-outline neon-text-purple">TOPIC // <span id="topic-tag">JS_BASICS</span></span>
-                <span class="system-status">STATE: <strong id="difficulty-level" class="neon-text-green">STABLE</strong></span>
-            </div>
-
-            <h1 class="question-text" id="question-text">Initializing Learning Interface...</h1>
-
-            <div class="options-grid" id="options-grid"></div>
-
-            <div id="feedback-area" class="feedback-panel hidden">
-                <div id="feedback-message" class="feedback-title"></div>
-                <p id="explanation-text" class="explanation"></p>
-            </div>
-
-            <div id="hint-box" class="hint-panel hidden">
-                <div class="hint-header"><i class="fas fa-sparkles"></i> AI ARCHITECT HINT</div>
-                <p id="hint-text"></p>
-            </div>
-
-            <div class="action-footer">
-                <button class="btn btn-execute neon-glow-purple" id="submit-btn">SUBMIT ANSWER</button>
-                <div class="dual-actions">
-                    <button class="btn-outline" id="hint-btn">GET HINT</button>
-                    <button class="btn-outline" id="skip-btn">SKIP</button>
-                </div>
-                <button class="btn btn-next hidden neon-glow-blue" id="next-btn">CONTINUE TO NEXT NODE <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </main>
-
-        <footer class="team-footer">VIBE CODERS // MAREATHON 8</footer>
     </div>
-    <script src="script.js"></script>
+
+    <div class="progress-item">
+        <span>Functions</span>
+        <div class="progress-bar">
+            <div class="progress-fill red" style="width:12%"></div>
+        </div>
+    </div>
+
+    <div class="progress-item">
+        <span>Data Types</span>
+        <div class="progress-bar">
+            <div class="progress-fill green" style="width:94%"></div>
+        </div>
+    </div>
+</div>
+
+<!-- AI Recommendation -->
+<div class="card ai-card glow-border fade-in">
+    <div>
+        <span class="tag">AI RECOMMENDATION</span>
+        <h2>Deep Dive: Nested Loops</h2>
+        <p>Improve matrix traversal & unlock next badge.</p>
+        <button class="btn">Resume Path →</button>
+    </div>
+
+    <lottie-player 
+        src="https://assets2.lottiefiles.com/packages/lf20_3rwasyjy.json"
+        background="transparent"
+        speed="1"
+        style="width:180px"
+        loop autoplay>
+    </lottie-player>
+</div>
+<!-- ===================== -->
+<!-- ACHIEVEMENT OVERVIEW -->
+<!-- ===================== -->
+
+<h2 class="section-title">Achievement Overview</h2>
+
+<div class="overview-grid">
+
+  <div class="overview-card">
+    <h3>Weekly Consistency</h3>
+    <p><span id="weeksActive">5</span> Weeks Active</p>
+    <div class="progress">
+      <div class="progress-fill yellow" id="weeklyBar"></div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <h3>Extreme Problems</h3>
+    <p><span id="extremeSolved">12</span> Solved</p>
+    <div class="progress">
+      <div class="progress-fill orange" id="extremeBar"></div>
+    </div>
+  </div>
+
+  <div class="overview-card">
+    <h3>Total Problems</h3>
+    <p><span id="totalSolved">240</span> Solved</p>
+    <div class="progress">
+      <div class="progress-fill green" id="totalBar"></div>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="section-title">Your Badges 🏆</h2>
+
+<div class="badge-grid">
+
+  <div class="badge-card gold">
+    <div class="badge-icon">🥇</div>
+    <h3>Golden Consistency</h3>
+  </div>
+
+  <div class="badge-card orange">
+    <div class="badge-icon">🔥</div>
+    <h3>Extreme Solver</h3>
+  </div>
+
+  <div class="badge-card blue">
+    <div class="badge-icon">💻</div>
+    <h3>Matrix Master</h3>
+  </div>
+
+</div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
